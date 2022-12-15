@@ -1,0 +1,5 @@
+//Renomear para .env
+
+module.exports = {
+    authSecret: '#nsndjua.97sand887.pasu'
+}
