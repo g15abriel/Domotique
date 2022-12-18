@@ -32,6 +32,7 @@ export default props => {
         Alert.alert('ERRO: Não foi possível desligar o led!')
       })
     }
+    props.toggleHost(props.id)
   }
 
     return (
@@ -45,7 +46,7 @@ export default props => {
                     <Switch style={isEnable ? styles.ONS : styles.OFFS}
                         onValueChange={isSwitch}
                         value={isEnable}
-                        onChange={[ledVermelho, () => props.toggleHost(props.id)]}
+                        onChange={ledVermelho}
                     />
                 </View>
 

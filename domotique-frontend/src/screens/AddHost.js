@@ -70,6 +70,7 @@ export default class AddHost extends Component {
                     onPress={this.props.onCancel}>
                         <View style={styles.background2}></View>
                 </TouchableWithoutFeedback>
+                
             </Modal>
         )
     }

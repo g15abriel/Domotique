@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
-import { View, Text, ImageBackground, StyleSheet, FlatList, Alert } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, FlatList, Alert, Button } from 'react-native';
 
 import comomStyles from '../comomStyles';
 import backImage from '../../assets/imgs/back.jpg';
 
 import Host from '../components/Host';
 import AddHost from './AddHost';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import  Icon  from 'react-native-vector-icons/FontAwesome';
 
 export default class HostList extends Component {
     state = {
-        showAddHost: true,
+        showAddHost: false,
         hosts: [{
             id: Math.random(),
             name: 'Televisão',
-            ip: '123.456.789',
-            ifON: '0xE46F',
-            ifOFF: '0x8A9B',
+            ip: '172.20.10.2',
+            ifON: '0x8',
+            ifOFF: '0x3D',
             done: 'false'
         },{
             id: Math.random(),
-            name: 'Ar Condicionado',
-            ip: '129.876.2.4',
-            ifON: '0x4790',
-            ifOFF: '0xAB87',
-            done: 'true'
-        },]
+            name: 'Esp',
+            ip: '192.168.20.63',
+            ifON: '0x8',
+            ifOFF: '0x3D',
+            done: 'false'
+        }]
     }
 
     toggleHost = hostID => {
@@ -59,6 +59,10 @@ export default class HostList extends Component {
         this.setState({ hosts, showAddHost: false})
     }
 
+    changeAddHost = () => {
+        this.setState({showAddHost: true})
+    }
+
     
 
     render(){
@@ -78,16 +82,18 @@ export default class HostList extends Component {
                         keyExtractor={item => `${item.id}`}
                         renderItem={({item}) => <Host {...item} toggleHost={this.toggleHost}/>} />
                 </View>
-                <TouchableOpacity style={styles.addButton}
-                    activeOpacity={0.7}
-                    onPress={() => this.setState({ showAddHost: true })}>
-                    <Icon name='plus' size={20}
-                        color={comomStyles.colors.secondary}/>
-                </TouchableOpacity>
+                <View style={styles.addButton}>
+                <Button 
+                    onPress={this.changeAddHost} title="+"
+                    color="#FFF"/>
+                </View>
+                
             </View>
         )
     }
 }
+
+//<Icon name='plus' size={20} color={comomStyles.colors.secondary}/>
 
 const styles = StyleSheet.create({
     container: {
@@ -119,5 +125,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#120A8F',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    button: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 40
     }
 })
